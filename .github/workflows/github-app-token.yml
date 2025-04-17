@@ -1,4 +1,4 @@
-name: Set GH_PAT Secret Using GitHub App
+name: Set GH_PAT Secret
 
 on:
   schedule:
@@ -20,47 +20,41 @@ jobs:
           app-id: ${{ vars.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
 
-      - name: Set GH_PAT secret using github-script
+      - name: Set GH_PAT secret
         uses: actions/github-script@v7
         with:
           github-token: ${{ steps.generate-token.outputs.token }}
           script: |
-            const crypto = require('crypto');
+            const { createPublicKey, publicEncrypt } = require('crypto');
+            const { Buffer } = require('buffer');
+            const sodium = require('@actions/libsodium');
 
-            const secretName = 'GH_PAT';
             const secretValue = `${{ steps.generate-token.outputs.token }}`;
+            const secretName = 'GH_PAT';
             const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
 
             // Get the repo public key
             const { data: publicKey } = await github.rest.actions.getRepoPublicKey({
               owner,
-              repo
+              repo,
             });
 
-            // Encrypt the secret value
-            const keyBytes = Buffer.from(publicKey.key, 'base64');
-            const messageBytes = Buffer.from(secretValue);
-            const encryptedBytes = crypto.publicEncrypt(
-              {
-                key: crypto.createPublicKey({
-                  key: keyBytes,
-                  format: 'der',
-                  type: 'spki',
-                }),
-                padding: crypto.constants.RSA_PKCS1_OAEP_PADDING,
-                oaepHash: 'sha256',
-              },
-              messageBytes
-            );
-            const encryptedValue = encryptedBytes.toString('base64');
+            const key = publicKey.key;
+            const key_id = publicKey.key_id;
 
-            // Set the repo secret
+            // Encrypt the secret
+            const binkey = sodium.base64.decode(key);
+            const binsec = sodium.str2buf(secretValue);
+            const encBytes = sodium.seal(binsec, binkey);
+            const encrypted_value = sodium.base64.encode(encBytes);
+
+            // Set the secret
             await github.rest.actions.createOrUpdateRepoSecret({
               owner,
               repo,
               secret_name: secretName,
-              encrypted_value: encryptedValue,
-              key_id: publicKey.key_id
+              encrypted_value,
+              key_id,
             });
 
-            console.log(`✅ Secret '${secretName}' set successfully.`);
+            console.log(`✅ Secret ${secretName} set successfully.`);
