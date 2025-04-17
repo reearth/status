@@ -31,6 +31,11 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.GH_PAT || github.token }}
+          persist-credentials: false
+      - name: Checkout using app token
+        uses: creyD/prettier_action@v4.3
+        with:
+          github_token: ${{ secrets.GH_PAT }}
       - name: Update code
         uses: upptime/updates@master
         env:

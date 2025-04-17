@@ -22,4 +22,4 @@ jobs:
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
           REPO: ${{ github.repository }}
         run: |
-          gh secret set GH_PAT --repo "$REPO" --app actions --body "$APP_TOKEN"
+          gh secret set GH_PAT --repo "$REPO" --app actions --body $APP_TOKEN

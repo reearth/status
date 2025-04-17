@@ -32,12 +32,17 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.GH_PAT || github.token }}
-      - name: Update template
-        uses: upptime/uptime-monitor@v1.40.1
+          persist-credentials: false
+      - name: Checkout using app token
+        uses: creyD/prettier_action@v4.3
         with:
-          command: "update-template"
-        env:
-          GH_PAT: ${{ secrets.GH_PAT || github.token }}
+          github_token: ${{ secrets.GH_PAT }}
+      # - name: Update template
+      #   uses: upptime/uptime-monitor@v1.40.1
+      #   with:
+      #     command: "update-template"
+      #   env:
+      #     GH_PAT: ${{ secrets.GH_PAT || github.token }}
       - name: Update response time
         uses: upptime/uptime-monitor@v1.40.1
         with:
