@@ -19,42 +19,11 @@ jobs:
         with:
           app-id: ${{ vars.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
-
-      - name: Set GH_PAT secret
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{ steps.generate-token.outputs.token }}
-          script: |
-            const { createPublicKey, publicEncrypt } = require('crypto');
-            const { Buffer } = require('buffer');
-            const sodium = require('@actions/libsodium');
-
-            const secretValue = `${{ steps.generate-token.outputs.token }}`;
-            const secretName = 'GH_PAT';
-            const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
-
-            // Get the repo public key
-            const { data: publicKey } = await github.rest.actions.getRepoPublicKey({
-              owner,
-              repo,
-            });
-
-            const key = publicKey.key;
-            const key_id = publicKey.key_id;
-
-            // Encrypt the secret
-            const binkey = sodium.base64.decode(key);
-            const binsec = sodium.str2buf(secretValue);
-            const encBytes = sodium.seal(binsec, binkey);
-            const encrypted_value = sodium.base64.encode(encBytes);
-
-            // Set the secret
-            await github.rest.actions.createOrUpdateRepoSecret({
-              owner,
-              repo,
-              secret_name: secretName,
-              encrypted_value,
-              key_id,
-            });
-
-            console.log(`✅ Secret ${secretName} set successfully.`);
+  
+      - name: Set GH_PAT secret using gh CLI
+        env:
+          APP_TOKEN: ${{ steps.generate-token.outputs.token }}
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh secret set GH_PAT --repo "$REPO" --app actions --body "$APP_TOKEN"
