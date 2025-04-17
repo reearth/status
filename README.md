@@ -1,7 +1,5 @@
 # Re:Earth Status Page
 
-See [Re:Earth Visualizer repo](https://github.com/reearth/reearth-visualizer) to access the latest Re:Earth!
-
 ---
 
 <p align="center">
@@ -19,6 +17,8 @@ See [Re:Earth Visualizer repo](https://github.com/reearth/reearth-visualizer) to
   ·
   <a href="https://discord.gg/XJhYkQQDAu">Discord</a>
 </p>
+
+---
 
 This repository contains the open-source uptime monitor and status page for [Re:Earth](https://reearth.io), powered by [Upptime](https://github.com/upptime/upptime).
 
