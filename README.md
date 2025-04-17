@@ -1,7 +1,5 @@
 # Re:Earth Status Page
 
----
-
 <p align="center">
   <a href="https://github.com/reearth/reearth-classic">
     <img src="https://reearth.io/img/logo.svg" alt="Logo" width="300" height="300">
