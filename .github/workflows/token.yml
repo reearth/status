@@ -2,7 +2,7 @@ name: Set GH_PAT Secret
  
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: 0 */6 * * *
   workflow_dispatch:
 
 jobs:
