@@ -1,4 +1,24 @@
-# [![Re:Earth](https://reearth.io/img/logo.svg)](https://reearth.io/)
+# Re:Earth Status Page
+
+See [Re:Earth Visualizer repo](https://github.com/reearth/reearth-visualizer) to access the latest Re:Earth!
+
+---
+
+<p align="center">
+  <a href="https://github.com/reearth/reearth-classic">
+    <img src="./public/reearth-logo.svg" alt="Logo" width="300" height="300">
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://reearth.io">Website</a>
+  ·
+  <a href="https://help.reearth.io">Documentation</a>
+  ·
+  <a href="https://www.figma.com/community/file/1027048965458642686">Figma</a>
+  ·
+  <a href="https://discord.gg/XJhYkQQDAu">Discord</a>
+</p>
 
 This repository contains the open-source uptime monitor and status page for [Re:Earth](https://reearth.io), powered by [Upptime](https://github.com/upptime/upptime).
 
