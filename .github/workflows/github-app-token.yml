@@ -1,33 +1,73 @@
-name: Set GitHub App Token  
+name: Set GH_PAT Secret Using GitHub App
+
 on:
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
+
 jobs:
-  release:
-    name: Generate GH_PAT secret
+  set-secret:
     runs-on: ubuntu-latest
     permissions:
       contents: read
       actions: write
+
     steps:
-      - name: Generate an app token
+      - name: Generate installation token
         id: generate-token
         uses: actions/create-github-app-token@v1
         with:
           app-id: ${{ vars.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
-          token: ${{ secrets.GH_PAT || github.token }}
-      - name: Update GH_PAT secret
+
+      - name: Set secret using GitHub API
         env:
           APP_TOKEN: ${{ steps.generate-token.outputs.token }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          SECRET_NAME: GH_PAT
+          SECRET_VALUE: ${{ steps.generate-token.outputs.token }}
         run: |
-          echo "$APP_TOKEN" | gh secret set GH_PAT \
-            --repo ${{ github.repository }} \
-            --app actions \
-            --body -
+          # Install python + required lib
+          pip install pynacl --quiet
+
+          # Extract owner and repo
+          OWNER=$(echo "$REPO" | cut -d'/' -f1)
+          REPO_NAME=$(echo "$REPO" | cut -d'/' -f2)
+
+          # Get public key
+          response=$(curl -s -H "Authorization: Bearer $APP_TOKEN" \
+                          -H "Accept: application/vnd.github+json" \
+                          "https://api.github.com/repos/$OWNER/$REPO_NAME/actions/secrets/public-key")
+
+          KEY_ID=$(echo "$response" | jq -r .key_id)
+          PUBLIC_KEY=$(echo "$response" | jq -r .key)
+
+          if [[ -z "$KEY_ID" || -z "$PUBLIC_KEY" ]]; then
+            echo "❌ Failed to fetch public key."
+            echo "Response: $response"
+            exit 1
+          fi
+
+          # Encrypt secret using the public key (with PyNaCl)
+          ENCRYPTED_VALUE=$(python3 -c "
+import base64
+import nacl.encoding, nacl.public
+public_key = nacl.public.PublicKey(
+    base64.b64decode('$PUBLIC_KEY'), nacl.encoding.RawEncoder()
+)
+sealed_box = nacl.public.SealedBox(public_key)
+encrypted = sealed_box.encrypt(b'$SECRET_VALUE')
+print(base64.b64encode(encrypted).decode())
+")
+
+          # Set the secret via GitHub API
+          curl -X PUT \
+            -H "Authorization: Bearer $APP_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/$OWNER/$REPO_NAME/actions/secrets/$SECRET_NAME" \
+            -d @- <<EOF
+{
+  "encrypted_value": "$ENCRYPTED_VALUE",
+  "key_id": "$KEY_ID"
+}
+EOF
