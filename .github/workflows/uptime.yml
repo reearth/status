@@ -26,15 +26,21 @@ jobs:
     name: Check status
     runs-on: ubuntu-latest
     steps:
+      - name: Generate an app token
+        id: generate-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ vars.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
       - name: Checkout
         uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
-          token: ${{ secrets.GH_PAT || github.token }}
+          token: ${{ steps.generate-token.outputs.token }}
       - name: Check endpoint status
         uses: upptime/uptime-monitor@v1.40.1
         with:
           command: "update"
         env:
-          GH_PAT: ${{ secrets.GH_PAT || github.token }}
+          GH_PAT: ${{ steps.generate-token.outputs.token }}
           SECRETS_CONTEXT: ${{ toJson(secrets) }}
