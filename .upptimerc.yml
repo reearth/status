@@ -15,12 +15,8 @@ sites:
   - name: Re:Earth Visualizer API
     url: https://api.visualizer.reearth.io/api/ping
   
-
 status-website:
   cname: status.reearth.io
-  commitMessages:
-    commitAuthorName: "reearth-app[bot]"
-    commitAuthorEmail: "909148+reearth-app[bot]@users.noreply.github.com"
   faviconSvg: https://reearth.io/img/logo.svg
   logoUrl: https://reearth.io/img/logo.svg
   name: Re:Earth Status Page
