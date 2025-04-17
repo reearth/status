@@ -1,0 +1,25 @@
+name: Set GH_PAT Secret
+ 
+ on:
+   schedule:
+     - cron: "*/5 * * * *"
+   workflow_dispatch:
+ 
+ jobs:
+   set-secret:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Generate installation token
+         id: generate-token
+         uses: actions/create-github-app-token@v1
+         with:
+           app-id: ${{ vars.GH_APP_ID }}
+           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+   
+       - name: Set GH_PAT secret using gh CLI
+         env:
+           APP_TOKEN: ${{ steps.generate-token.outputs.token }}
+           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+           REPO: ${{ github.repository }}
+         run: |
+           gh secret set GH_PAT --repo "$REPO" --app actions --body "$APP_TOKEN"
