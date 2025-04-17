@@ -2,6 +2,10 @@ owner: reearth
 repo: status
 
 sites:
+  - name: Re:Earth Classic
+    url: https://reearth.io
+  - name: Re:Earth Classic API
+    url: https://api.reearth.io/api/ping
   - name: Re:Earth CMS
     url: https://cms.reearth.io
   - name: Re:Earth CMS API
