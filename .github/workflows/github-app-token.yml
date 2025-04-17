@@ -20,41 +20,47 @@ jobs:
           app-id: ${{ vars.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
 
-      - name: Set GH_PAT secret via GitHub API
+      - name: Set GH_PAT secret using github-script
         uses: actions/github-script@v7
         with:
+          github-token: ${{ steps.generate-token.outputs.token }}
           script: |
-            const axios = require('axios');
-            const sodium = require('libsodium-wrappers');
+            const crypto = require('crypto');
 
-            const appToken = `${{ steps.generate-token.outputs.token }}`;
+            const secretName = 'GH_PAT';
             const secretValue = `${{ steps.generate-token.outputs.token }}`;
-
             const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
 
-            const githubApi = axios.create({
-              baseURL: 'https://api.github.com',
-              headers: {
-                Authorization: `Bearer ${appToken}`,
-                Accept: 'application/vnd.github+json'
-              }
+            // Get the repo public key
+            const { data: publicKey } = await github.rest.actions.getRepoPublicKey({
+              owner,
+              repo
             });
 
-            await sodium.ready;
+            // Encrypt the secret value
+            const keyBytes = Buffer.from(publicKey.key, 'base64');
+            const messageBytes = Buffer.from(secretValue);
+            const encryptedBytes = crypto.publicEncrypt(
+              {
+                key: crypto.createPublicKey({
+                  key: keyBytes,
+                  format: 'der',
+                  type: 'spki',
+                }),
+                padding: crypto.constants.RSA_PKCS1_OAEP_PADDING,
+                oaepHash: 'sha256',
+              },
+              messageBytes
+            );
+            const encryptedValue = encryptedBytes.toString('base64');
 
-            // Get the public key
-            const keyResponse = await githubApi.get(`/repos/${owner}/${repo}/actions/secrets/public-key`);
-            const { key_id, key } = keyResponse.data;
-
-            const binkey = sodium.from_base64(key, sodium.base64_variants.ORIGINAL);
-            const binsec = sodium.from_string(secretValue);
-            const encBytes = sodium.seal(binsec, binkey);
-            const encrypted = sodium.to_base64(encBytes, sodium.base64_variants.ORIGINAL);
-
-            // Upload the encrypted secret
-            await githubApi.put(`/repos/${owner}/${repo}/actions/secrets/GH_PAT`, {
-              encrypted_value: encrypted,
-              key_id
+            // Set the repo secret
+            await github.rest.actions.createOrUpdateRepoSecret({
+              owner,
+              repo,
+              secret_name: secretName,
+              encrypted_value: encryptedValue,
+              key_id: publicKey.key_id
             });
 
-            console.log("✅ Successfully set GH_PAT");
+            console.log(`✅ Secret '${secretName}' set successfully.`);
