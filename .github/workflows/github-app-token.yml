@@ -20,54 +20,41 @@ jobs:
           app-id: ${{ vars.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
 
-      - name: Set secret using GitHub API
-        env:
-          APP_TOKEN: ${{ steps.generate-token.outputs.token }}
-          REPO: ${{ github.repository }}
-          SECRET_NAME: GH_PAT
-          SECRET_VALUE: ${{ steps.generate-token.outputs.token }}
-        run: |
-          # Install python + required lib
-          pip install pynacl --quiet
+      - name: Set GH_PAT secret via GitHub API
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const axios = require('axios');
+            const sodium = require('libsodium-wrappers');
 
-          # Extract owner and repo
-          OWNER=$(echo "$REPO" | cut -d'/' -f1)
-          REPO_NAME=$(echo "$REPO" | cut -d'/' -f2)
+            const appToken = `${{ steps.generate-token.outputs.token }}`;
+            const secretValue = `${{ steps.generate-token.outputs.token }}`;
 
-          # Get public key
-          response=$(curl -s -H "Authorization: Bearer $APP_TOKEN" \
-                          -H "Accept: application/vnd.github+json" \
-                          "https://api.github.com/repos/$OWNER/$REPO_NAME/actions/secrets/public-key")
+            const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
 
-          KEY_ID=$(echo "$response" | jq -r .key_id)
-          PUBLIC_KEY=$(echo "$response" | jq -r .key)
+            const githubApi = axios.create({
+              baseURL: 'https://api.github.com',
+              headers: {
+                Authorization: `Bearer ${appToken}`,
+                Accept: 'application/vnd.github+json'
+              }
+            });
 
-          if [[ -z "$KEY_ID" || -z "$PUBLIC_KEY" ]]; then
-            echo "❌ Failed to fetch public key."
-            echo "Response: $response"
-            exit 1
-          fi
+            await sodium.ready;
 
-          # Encrypt secret using the public key (with PyNaCl)
-          ENCRYPTED_VALUE=$(python3 -c "
-import base64
-import nacl.encoding, nacl.public
-public_key = nacl.public.PublicKey(
-    base64.b64decode('$PUBLIC_KEY'), nacl.encoding.RawEncoder()
-)
-sealed_box = nacl.public.SealedBox(public_key)
-encrypted = sealed_box.encrypt(b'$SECRET_VALUE')
-print(base64.b64encode(encrypted).decode())
-")
+            // Get the public key
+            const keyResponse = await githubApi.get(`/repos/${owner}/${repo}/actions/secrets/public-key`);
+            const { key_id, key } = keyResponse.data;
 
-          # Set the secret via GitHub API
-          curl -X PUT \
-            -H "Authorization: Bearer $APP_TOKEN" \
-            -H "Accept: application/vnd.github+json" \
-            "https://api.github.com/repos/$OWNER/$REPO_NAME/actions/secrets/$SECRET_NAME" \
-            -d @- <<EOF
-{
-  "encrypted_value": "$ENCRYPTED_VALUE",
-  "key_id": "$KEY_ID"
-}
-EOF
+            const binkey = sodium.from_base64(key, sodium.base64_variants.ORIGINAL);
+            const binsec = sodium.from_string(secretValue);
+            const encBytes = sodium.seal(binsec, binkey);
+            const encrypted = sodium.to_base64(encBytes, sodium.base64_variants.ORIGINAL);
+
+            // Upload the encrypted secret
+            await githubApi.put(`/repos/${owner}/${repo}/actions/secrets/GH_PAT`, {
+              encrypted_value: encrypted,
+              key_id
+            });
+
+            console.log("✅ Successfully set GH_PAT");
