@@ -6,7 +6,7 @@ See [Re:Earth Visualizer repo](https://github.com/reearth/reearth-visualizer) to
 
 <p align="center">
   <a href="https://github.com/reearth/reearth-classic">
-    <img src="./public/reearth-logo.svg" alt="Logo" width="300" height="300">
+    <img src="https://reearth.io/img/logo.svg" alt="Logo" width="300" height="300">
   </a>
 </p>
 
