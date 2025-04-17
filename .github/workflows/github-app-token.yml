@@ -14,6 +14,11 @@ jobs:
         with:
           app-id: ${{ vars.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.GH_PAT || github.token }}
       - name: Update GH_PAT secret
         env:
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
