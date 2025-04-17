@@ -16,6 +16,7 @@ status-website:
   # Add your custom domain name, or remove the `cname` line if you don't have a domain
   # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
   baseUrl: /status
+  faviconSvg: https://reearth.io/img/logo.svg
   logoUrl: https://reearth.io/img/logo.svg
   name: Re:Earth Status Page
   introTitle: "**Re:Earth** - A free, open, highly extensible WebGIS platform"
