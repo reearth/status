@@ -26,20 +26,14 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Generate an app token
-        id: generate-token
-        uses: actions/create-github-app-token@v1
-        with:
-          app-id: ${{ vars.GH_APP_ID }}
-          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
       - name: Checkout
         uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
-          token: ${{ steps.generate-token.outputs.token }}
+          token: ${{ secrets.GH_PAT || github.token }}
       - name: Update template
         uses: upptime/uptime-monitor@master
         with:
           command: "update-template"
         env:
-          GH_PAT: ${{ steps.generate-token.outputs.token }}
+          GH_PAT: ${{ secrets.GH_PAT || github.token }}
