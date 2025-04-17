@@ -25,6 +25,9 @@ jobs:
       - name: Update GH_PAT secret
         env:
           APP_TOKEN: ${{ steps.generate-token.outputs.token }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh secret set GH_PAT --body "$APP_TOKEN"
+          echo "$APP_TOKEN" | gh secret set GH_PAT \
+            --repo ${{ github.repository }} \
+            --app actions \
+            --body -
