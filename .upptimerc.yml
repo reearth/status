@@ -23,8 +23,16 @@ status-website:
   introTitle: "**Re:Earth** - A free, open, highly extensible WebGIS platform"
   introMessage: This is the status page for Re:Earth, a free, open, highly extensible WebGIS platform.
   navbar:
-    - title: Status
-      href: /
+    - title: Homepage
+      href: https://reearth.io
+  workflowSchedule:
+    graphs: "*/30 * * * *"
+    responseTime: "*/30 * * * *"
+    staticSite: "0 * * * *"
+    summary: "0 0 * * *"
+    updateTemplate: "0 0 * * *"
+    updates: "0 * * * *"
+    uptime: "*/5 * * * *"
 
 # Upptime also supports notifications, assigning issues, and more
 # See https://upptime.js.org/docs/configuration
