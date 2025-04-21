@@ -38,6 +38,8 @@ jobs:
           token: ${{ steps.app-token.outputs.token }}
           ref: ${{ github.head_ref }}
           persist-credentials: false
+      - name: Setup credentials to access github using app-token
+        run: git config --global url.https://${{ steps.app-token.outputs.token }}@github.com/.insteadOf https://github.com/
       - name: Check endpoint status
         uses: upptime/uptime-monitor@v1.40.1
         with:
