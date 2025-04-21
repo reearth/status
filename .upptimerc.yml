@@ -14,8 +14,6 @@ sites:
     url: https://visualizer.reearth.io
   - name: Re:Earth Visualizer API
     url: https://api.visualizer.reearth.io/api/ping
-  - name: Test Broken Site
-    url: https://thissitedoesnotexist.koj.co
   
 status-website:
   cname: status.reearth.io
