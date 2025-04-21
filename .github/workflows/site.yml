@@ -47,6 +47,11 @@ jobs:
       - name: Setup credentials to access github using app-token
         run: |
           git config --global url."https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/".insteadOf https://github.com/
+      - name: Generate .upptimerc.yml
+        run: |
+          envsubst < .upptimerc.yml.tmpl > .upptimerc.yml
+        env:
+          BEARER_TOKEN: ${{ secrets.API_TOKEN }}
       - name: Generate site
         uses: upptime/uptime-monitor@v1.40.1
         with:
