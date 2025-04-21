@@ -17,6 +17,8 @@
 name: Setup CI
 on:
   push:
+    branches:
+      - main
     paths:
       - ".upptimerc.yml"
   repository_dispatch:
