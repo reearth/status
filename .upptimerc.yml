@@ -8,8 +8,12 @@ sites:
     url: $REEARTH_CLASSIC_API_URL
   - name: Re:Earth CMS
     url: $REEARTH_CMS_WEB_URL
+    headers:
+      - "Authorization: Bearer $REEARTH_CMS_BEARER_TOKEN"
   - name: Re:Earth CMS API
     url: $REEARTH_CMS_API_URL
+    headers:
+      - "Authorization: Bearer $REEARTH_CMS_BEARER_TOKEN"
   - name: Re:Earth Visualizer
     url: $REEARTH_VISUALIZER_WEB_URL
     headers:
