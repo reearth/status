@@ -1,7 +1,7 @@
-url: https://cms.reearth.io
+url: $REEARTH_CMS_WEB_URL
 status: up
 code: 200
-responseTime: 450
-lastUpdated: 2025-04-22T03:59:20.941Z
+responseTime: 900
+lastUpdated: 2025-04-22T04:20:58.189Z
 startTime: 2025-04-17T09:48:55.370Z
 generator: Upptime <https://github.com/upptime/upptime>
