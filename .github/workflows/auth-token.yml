@@ -30,7 +30,7 @@ jobs:
             --header 'content-type: application/json' \
             --data '{"grant_type": "client_credentials", "audience": "${{ secrets.REEARTH_CLASSIC_AUTH0_AUDIENCE }}", "client_id": "${{ secrets.REEARTH_CLASSIC_AUTH0_CLIENT_ID }}", "client_secret": "${{ secrets.REEARTH_CLASSIC_AUTH0_CLIENT_SECRET }}"}' \
             | jq -r '.token' )
-          echo "bearer_token=$token" >> $GITHUB_OUTPUTS
+          echo "bearer_token=$token" >> $GITHUB_OUTPUT
       - name: Save token in GitHub secrets
         run: |
           gh secret set REEARTH_CLASSIC_BEARER_TOKEN --body "${{ steps.bearer-token.outputs.bearer_token }}"
@@ -60,7 +60,7 @@ jobs:
             --header 'content-type: application/json' \
             --data '{"grant_type": "client_credentials", "audience": "${{ secrets.REEARTH_CMS_AUTH0_AUDIENCE }}", "client_id": "${{ secrets.REEARTH_CMS_AUTH0_CLIENT_ID }}", "client_secret": "${{ secrets.REEARTH_CMS_AUTH0_CLIENT_SECRET }}"}' \
             | jq -r '.token' )
-          echo "bearer_token=$token" >> $GITHUB_OUTPUTS
+          echo "bearer_token=$token" >> $GITHUB_OUTPUT
       - name: Save token in GitHub secrets
         run: |
           gh secret set REEARTH_CMS_BEARER_TOKEN --body "${{ steps.bearer-token.outputs.bearer_token }}"
@@ -90,7 +90,7 @@ jobs:
             --header 'content-type: application/json' \
             --data '{"grant_type": "client_credentials", "audience": "${{ secrets.REEARTH_VISUALIZER_AUTH0_AUDIENCE }}", "client_id": "${{ secrets.REEARTH_VISUALIZER_AUTH0_CLIENT_ID }}", "client_secret": "${{ secrets.REEARTH_VISUALIZER_AUTH0_CLIENT_SECRET }}"}' \
             | jq -r '.token' )
-          echo "bearer_token=$token" >> $GITHUB_OUTPUTS
+          echo "bearer_token=$token" >> $GITHUB_OUTPUT
       - name: Save token in GitHub secrets
         run: |
           gh secret set REEARTH_VISUALIZER_BEARER_TOKEN --body "${{ steps.bearer-token.outputs.bearer_token }}"
