@@ -7,7 +7,7 @@ on:
 
 jobs:
 
-  generate-app-token:
+  set-bearer-token-classic:
     runs-on: ubuntu-latest
     steps:
       - name: Generate app token
@@ -16,17 +16,10 @@ jobs:
         with:
           app-id: ${{ vars.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
-    outputs:
-      token: ${{ steps.app-token.outputs.token }}
-
-  set-bearer-token-classic:
-    runs-on: ubuntu-latest
-    needs: generate-app-token
-    steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          token: ${{ needs.generate-app-token.outputs.token }}
+          token: ${{ steps.app-token.outputs.token }}
           ref: ${{ github.head_ref }}
           persist-credentials: false
       - name: Generate bearer token
@@ -42,16 +35,21 @@ jobs:
         run: |
           gh secret set REEARTH_CLASSIC_BEARER_TOKEN --body "${{ steps.bearer-token.outputs.bearer_token }}"
         env:
-          GH_TOKEN: ${{ needs.generate-app-token.outputs.token }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
 
   set-bearer-token-cms:
     runs-on: ubuntu-latest
-    needs: generate-app-token
     steps:
+      - name: Generate app token
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ vars.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          token: ${{ needs.generate-app-token.outputs.token }}
+          token: ${{ steps.app-token.outputs.token }}
           ref: ${{ github.head_ref }}
           persist-credentials: false
       - name: Generate bearer token
@@ -67,16 +65,21 @@ jobs:
         run: |
           gh secret set REEARTH_CMS_BEARER_TOKEN --body "${{ steps.bearer-token.outputs.bearer_token }}"
         env:
-          GH_TOKEN: ${{ needs.generate-app-token.outputs.token }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
 
   set-bearer-token-visualizer:
     runs-on: ubuntu-latest
-    needs: generate-app-token
     steps:
+      - name: Generate app token
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ vars.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          token: ${{ needs.generate-app-token.outputs.token }}
+          token: ${{ steps.app-token.outputs.token }}
           ref: ${{ github.head_ref }}
           persist-credentials: false
       - name: Generate bearer token
@@ -92,4 +95,4 @@ jobs:
         run: |
           gh secret set REEARTH_VISUALIZER_BEARER_TOKEN --body "${{ steps.bearer-token.outputs.bearer_token }}"
         env:
-          GH_TOKEN: ${{ needs.generate-app-token.outputs.token }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
