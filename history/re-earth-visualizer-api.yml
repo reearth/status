@@ -1,7 +1,7 @@
-url: https://api.visualizer.reearth.io/api/ping
-status: up
-code: 200
-responseTime: 708
-lastUpdated: 2025-04-22T03:59:23.076Z
+url: $REEARTH_VISUALIZER_API_URL
+status: down
+code: 401
+responseTime: 839
+lastUpdated: 2025-04-22T04:21:01.348Z
 startTime: 2025-04-17T09:48:57.521Z
 generator: Upptime <https://github.com/upptime/upptime>
