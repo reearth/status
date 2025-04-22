@@ -1,7 +1,7 @@
-url: https://reearth.io
+url: $REEARTH_CLASSIC_WEB_URL
 status: up
 code: 200
-responseTime: 528
-lastUpdated: 2025-04-22T03:59:19.492Z
+responseTime: 588
+lastUpdated: 2025-04-22T04:20:53.698Z
 startTime: 2025-04-17T09:48:53.771Z
 generator: Upptime <https://github.com/upptime/upptime>
