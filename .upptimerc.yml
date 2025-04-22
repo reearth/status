@@ -12,8 +12,12 @@ sites:
     url: $REEARTH_CMS_API_URL
   - name: Re:Earth Visualizer
     url: $REEARTH_VISUALIZER_WEB_URL
+    headers:
+      - "Authorization: Bearer $REEARTH_VISUALIZER_BEARER_TOKEN"
   - name: Re:Earth Visualizer API
     url: $REEARTH_VISUALIZER_API_URL
+    headers:
+      - "Authorization: Bearer $REEARTH_VISUALIZER_BEARER_TOKEN"
 
 status-website:
   cname: status.reearth.io
