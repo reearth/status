@@ -1,7 +1,7 @@
 url: $REEARTH_VISUALIZER_API_URL
-status: down
-code: 401
-responseTime: 704
-lastUpdated: 2025-04-22T04:49:01.563Z
+status: up
+code: 200
+responseTime: 253
+lastUpdated: 2025-04-22T04:54:13.001Z
 startTime: 2025-04-17T09:48:57.521Z
 generator: Upptime <https://github.com/upptime/upptime>
