@@ -33,9 +33,7 @@
     "timeWeek": 490,
     "timeMonth": 490,
     "timeYear": 490,
-    "dailyMinutesDown": {
-      "2025-04-22": 33
-    }
+    "dailyMinutesDown": {}
   },
   {
     "name": "Re:Earth CMS",
@@ -107,8 +105,6 @@
     "timeWeek": 459,
     "timeMonth": 459,
     "timeYear": 459,
-    "dailyMinutesDown": {
-      "2025-04-22": 33
-    }
+    "dailyMinutesDown": {}
   }
 ]
