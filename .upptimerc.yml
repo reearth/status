@@ -3,29 +3,11 @@ repo: status
 
 sites:
   - name: Re:Earth Classic
-    url: $REEARTH_CLASSIC_WEB_URL
-    headers:
-      - "Authorization: Bearer $REEARTH_CLASSIC_BEARER_TOKEN"
-  - name: Re:Earth Classic API
     url: $REEARTH_CLASSIC_API_URL
-    headers:
-      - "Authorization: Bearer $REEARTH_CLASSIC_BEARER_TOKEN"
   - name: Re:Earth CMS
-    url: $REEARTH_CMS_WEB_URL
-    headers:
-      - "Authorization: Bearer $REEARTH_CMS_BEARER_TOKEN"
-  - name: Re:Earth CMS API
     url: $REEARTH_CMS_API_URL
-    headers:
-      - "Authorization: Bearer $REEARTH_CMS_BEARER_TOKEN"
   - name: Re:Earth Visualizer
-    url: $REEARTH_VISUALIZER_WEB_URL
-    headers:
-      - "Authorization: Bearer $REEARTH_VISUALIZER_BEARER_TOKEN"
-  - name: Re:Earth Visualizer API
     url: $REEARTH_VISUALIZER_API_URL
-    headers:
-      - "Authorization: Bearer $REEARTH_VISUALIZER_BEARER_TOKEN"
 
 status-website:
   cname: status.reearth.io
