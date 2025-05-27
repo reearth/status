@@ -3,16 +3,10 @@ repo: status
 
 sites:
   - name: Re:Earth Classic
-    url: $REEARTH_CLASSIC_WEB_URL
-  - name: Re:Earth Classic API
     url: $REEARTH_CLASSIC_API_URL
   - name: Re:Earth CMS
-    url: $REEARTH_CMS_WEB_URL
-  - name: Re:Earth CMS API
     url: $REEARTH_CMS_API_URL
   - name: Re:Earth Visualizer
-    url: $REEARTH_VISUALIZER_WEB_URL
-  - name: Re:Earth Visualizer API
     url: $REEARTH_VISUALIZER_API_URL
 
 status-website:
