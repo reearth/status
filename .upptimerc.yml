@@ -22,5 +22,8 @@ status-website:
     - title: Status
       href: /
 
-# Upptime also supports notifications, assigning issues, and more
-# See https://upptime.js.org/docs/configuration
+commitMessages:
+  commitAuthorName: "reearth-app[bot]"
+  commitAuthorEmail: "909148+reearth-app[bot]@users.noreply.github.com"
+
+user-agent: reearth-app[bot]
