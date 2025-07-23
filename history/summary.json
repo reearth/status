@@ -4,18 +4,20 @@
     "url": "$REEARTH_CLASSIC_API_URL",
     "icon": "https://icons.duckduckgo.com/ip3/null.ico",
     "slug": "re-earth-classic",
-    "status": "up",
+    "status": "down",
     "uptime": "100.00%",
     "uptimeDay": "100.00%",
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
     "time": 484,
-    "timeDay": 422,
+    "timeDay": 415,
     "timeWeek": 455,
     "timeMonth": 474,
     "timeYear": 484,
-    "dailyMinutesDown": {}
+    "dailyMinutesDown": {
+      "2025-07-23": 0
+    }
   },
   {
     "name": "Re:Earth CMS",
@@ -29,8 +31,8 @@
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
     "time": 523,
-    "timeDay": 560,
-    "timeWeek": 570,
+    "timeDay": 559,
+    "timeWeek": 571,
     "timeMonth": 551,
     "timeYear": 523,
     "dailyMinutesDown": {}
@@ -47,7 +49,7 @@
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
     "time": 442,
-    "timeDay": 406,
+    "timeDay": 409,
     "timeWeek": 430,
     "timeMonth": 427,
     "timeYear": 442,
