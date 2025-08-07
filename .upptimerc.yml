@@ -4,12 +4,16 @@ repo: status
 sites:
   - name: Re:Earth Classic
     url: $REEARTH_CLASSIC_API_URL
+  - name: Re:Earth Classic Earth Project
+    url: $REEARTH_CLASSIC_SITE_URL
   - name: Re:Earth CMS
     url: $REEARTH_CMS_API_URL
   - name: Re:Earth Dashboard
     url: $REEARTH_DASHBOARD_API_URL
   - name: Re:Earth Visualizer
     url: $REEARTH_VISUALIZER_API_URL
+  - name: Re:Earth Visualizer Project
+    url: $REEARTH_VISUALIZER_SITE_URL
 
 status-website:
   cname: status.reearth.io
