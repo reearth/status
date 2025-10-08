@@ -11,9 +11,9 @@
     "uptimeMonth": "100.00%",
     "uptimeYear": "99.99%",
     "time": 467,
-    "timeDay": 427,
-    "timeWeek": 436,
-    "timeMonth": 453,
+    "timeDay": 437,
+    "timeWeek": 434,
+    "timeMonth": 452,
     "timeYear": 467,
     "dailyMinutesDown": {
       "2025-07-23": 30
@@ -31,9 +31,9 @@
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
     "time": 407,
-    "timeDay": 388,
-    "timeWeek": 394,
-    "timeMonth": 398,
+    "timeDay": 386,
+    "timeWeek": 392,
+    "timeMonth": 397,
     "timeYear": 407,
     "dailyMinutesDown": {}
   },
@@ -42,20 +42,18 @@
     "url": "$REEARTH_CMS_API_URL",
     "icon": "https://icons.duckduckgo.com/ip3/null.ico",
     "slug": "re-earth-cms",
-    "status": "down",
+    "status": "up",
     "uptime": "100.00%",
-    "uptimeDay": "99.91%",
-    "uptimeWeek": "99.99%",
+    "uptimeDay": "100.00%",
+    "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
     "time": 591,
-    "timeDay": 673,
-    "timeWeek": 682,
-    "timeMonth": 679,
+    "timeDay": 668,
+    "timeWeek": 681,
+    "timeMonth": 678,
     "timeYear": 591,
-    "dailyMinutesDown": {
-      "2025-10-08": 1
-    }
+    "dailyMinutesDown": {}
   },
   {
     "name": "Re:Earth Dashboard",
@@ -69,9 +67,9 @@
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
     "time": 401,
-    "timeDay": 421,
-    "timeWeek": 412,
-    "timeMonth": 399,
+    "timeDay": 383,
+    "timeWeek": 413,
+    "timeMonth": 400,
     "timeYear": 401,
     "dailyMinutesDown": {}
   },
@@ -87,8 +85,8 @@
     "uptimeMonth": "100.00%",
     "uptimeYear": "99.98%",
     "time": 483,
-    "timeDay": 505,
-    "timeWeek": 548,
+    "timeDay": 515,
+    "timeWeek": 547,
     "timeMonth": 533,
     "timeYear": 483,
     "dailyMinutesDown": {
@@ -107,9 +105,9 @@
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
     "time": 500,
-    "timeDay": 451,
-    "timeWeek": 476,
-    "timeMonth": 476,
+    "timeDay": 449,
+    "timeWeek": 475,
+    "timeMonth": 477,
     "timeYear": 500,
     "dailyMinutesDown": {}
   }
