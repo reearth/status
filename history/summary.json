@@ -11,8 +11,8 @@
     "uptimeMonth": "100.00%",
     "uptimeYear": "99.99%",
     "time": 465,
-    "timeDay": 416,
-    "timeWeek": 428,
+    "timeDay": 447,
+    "timeWeek": 427,
     "timeMonth": 443,
     "timeYear": 465,
     "dailyMinutesDown": {
@@ -31,8 +31,8 @@
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
     "time": 404,
-    "timeDay": 390,
-    "timeWeek": 389,
+    "timeDay": 379,
+    "timeWeek": 387,
     "timeMonth": 393,
     "timeYear": 404,
     "dailyMinutesDown": {}
@@ -42,18 +42,20 @@
     "url": "$REEARTH_CMS_API_URL",
     "icon": "https://icons.duckduckgo.com/ip3/null.ico",
     "slug": "re-earth-cms",
-    "status": "up",
+    "status": "down",
     "uptime": "100.00%",
-    "uptimeDay": "100.00%",
-    "uptimeWeek": "100.00%",
+    "uptimeDay": "99.91%",
+    "uptimeWeek": "99.99%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
-    "time": 597,
-    "timeDay": 667,
-    "timeWeek": 671,
-    "timeMonth": 680,
-    "timeYear": 597,
-    "dailyMinutesDown": {}
+    "time": 598,
+    "timeDay": 733,
+    "timeWeek": 676,
+    "timeMonth": 681,
+    "timeYear": 598,
+    "dailyMinutesDown": {
+      "2025-10-20": 1
+    }
   },
   {
     "name": "Re:Earth Dashboard",
@@ -67,9 +69,9 @@
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
     "time": 402,
-    "timeDay": 357,
-    "timeWeek": 380,
-    "timeMonth": 405,
+    "timeDay": 367,
+    "timeWeek": 379,
+    "timeMonth": 403,
     "timeYear": 402,
     "dailyMinutesDown": {}
   },
@@ -85,9 +87,9 @@
     "uptimeMonth": "100.00%",
     "uptimeYear": "99.98%",
     "time": 488,
-    "timeDay": 535,
-    "timeWeek": 544,
-    "timeMonth": 540,
+    "timeDay": 510,
+    "timeWeek": 540,
+    "timeMonth": 539,
     "timeYear": 488,
     "dailyMinutesDown": {
       "2025-08-20": 61
@@ -105,9 +107,9 @@
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
     "time": 497,
-    "timeDay": 479,
-    "timeWeek": 473,
-    "timeMonth": 480,
+    "timeDay": 504,
+    "timeWeek": 474,
+    "timeMonth": 481,
     "timeYear": 497,
     "dailyMinutesDown": {}
   }
