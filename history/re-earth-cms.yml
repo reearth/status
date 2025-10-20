@@ -1,7 +1,7 @@
 url: $REEARTH_CMS_API_URL
-status: down
-code: 503
-responseTime: 2615
-lastUpdated: 2025-10-20T22:08:29.443Z
+status: up
+code: 200
+responseTime: 748
+lastUpdated: 2025-10-20T22:25:57.851Z
 startTime: 2025-04-17T09:48:55.370Z
 generator: Upptime <https://github.com/upptime/upptime>
