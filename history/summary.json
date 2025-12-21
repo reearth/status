@@ -4,19 +4,18 @@
     "url": "$REEARTH_CLASSIC_API_URL",
     "icon": "https://icons.duckduckgo.com/ip3/null.ico",
     "slug": "re-earth-classic",
-    "status": "down",
+    "status": "up",
     "uptime": "99.99%",
-    "uptimeDay": "99.99%",
+    "uptimeDay": "100.00%",
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "99.99%",
     "time": 461,
-    "timeDay": 481,
-    "timeWeek": 465,
-    "timeMonth": 461,
+    "timeDay": 484,
+    "timeWeek": 468,
+    "timeMonth": 463,
     "timeYear": 461,
     "dailyMinutesDown": {
-      "2025-12-20": 0,
       "2025-07-23": 30
     }
   },
@@ -32,7 +31,7 @@
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
     "time": 404,
-    "timeDay": 422,
+    "timeDay": 425,
     "timeWeek": 420,
     "timeMonth": 419,
     "timeYear": 404,
@@ -50,9 +49,9 @@
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
     "time": 619,
-    "timeDay": 676,
-    "timeWeek": 654,
-    "timeMonth": 683,
+    "timeDay": 675,
+    "timeWeek": 657,
+    "timeMonth": 684,
     "timeYear": 619,
     "dailyMinutesDown": {
       "2025-10-20": 18
@@ -69,11 +68,11 @@
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
-    "time": 405,
-    "timeDay": 415,
-    "timeWeek": 404,
-    "timeMonth": 419,
-    "timeYear": 405,
+    "time": 404,
+    "timeDay": 378,
+    "timeWeek": 396,
+    "timeMonth": 418,
+    "timeYear": 404,
     "dailyMinutesDown": {}
   },
   {
@@ -88,9 +87,9 @@
     "uptimeMonth": "100.00%",
     "uptimeYear": "99.98%",
     "time": 500,
-    "timeDay": 516,
-    "timeWeek": 494,
-    "timeMonth": 533,
+    "timeDay": 523,
+    "timeWeek": 491,
+    "timeMonth": 532,
     "timeYear": 500,
     "dailyMinutesDown": {
       "2025-08-20": 61
@@ -107,11 +106,11 @@
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
-    "time": 497,
-    "timeDay": 510,
-    "timeWeek": 520,
+    "time": 496,
+    "timeDay": 499,
+    "timeWeek": 514,
     "timeMonth": 503,
-    "timeYear": 497,
+    "timeYear": 496,
     "dailyMinutesDown": {}
   }
 ]
