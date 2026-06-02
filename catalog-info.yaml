@@ -1,0 +1,24 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: status
+  namespace: reearth
+  description: 📈 Uptime monitor and status page for reearth, powered by @upptime
+  annotations:
+    github.com/project-slug: reearth/status
+  links:
+  - url: https://github.com/reearth/status
+    title: GitHub
+    icon: github
+  - url: https://status.reearth.io
+    title: Website
+    icon: web
+  tags:
+  - markdown
+  - status-page
+  - upptime
+  - uptime-monitor
+spec:
+  type: service
+  lifecycle: production
+  owner: reearth/sre
