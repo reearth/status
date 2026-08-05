@@ -12,12 +12,12 @@ jobs:
     steps:
       - name: Generate app token
         id: app-token
-        uses: actions/create-github-app-token@v2
+        uses: actions/create-github-app-token@fee1f7d63c2ff003460e3d139729b119787bc349 # v2
         with:
           app-id: ${{ vars.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           token: ${{ steps.app-token.outputs.token }}
           ref: ${{ github.head_ref }}
@@ -26,6 +26,6 @@ jobs:
         run: |
           git config --global url."https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/".insteadOf https://github.com/
       - name: Update code
-        uses: upptime/updates@master
+        uses: upptime/updates@c87d9c5a7244da800a55b61b6518072ca9882bad # master
         env:
           GH_PAT: ${{ steps.app-token.outputs.token }}
