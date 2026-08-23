@@ -26,6 +26,6 @@ jobs:
         run: |
           git config --global url."https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/".insteadOf https://github.com/
       - name: Update code
-        uses: upptime/updates@a55de829d40d51209e587182f1365ed12b823ea6 # master
+        uses: upptime/updates@05575cf2281a7495cc1eb6ec186d0f346f378519 # master
         env:
           GH_PAT: ${{ steps.app-token.outputs.token }}
